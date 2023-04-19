@@ -1,0 +1,35 @@
+.container{
+    height: 120px;
+    background-color: white;
+    padding: 10px;
+    border: 2px solid var(--primary-blue);
+    border-radius: 10px;
+    width: 70%;
+    margin: 15px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.info>*{
+    margin: 0;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.controls{
+    display: flex;
+    flex-direction: row;
+    align-self: start;
+}
+.main{
+    margin: 10px 0;
+}
+h2>span{
+    color: var(--primary-blue)
+}
+.price{
+    margin: 7px 0;
+}
