@@ -5,14 +5,15 @@ import SignUp from './pages/SignUp/SignUp'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import StartUser from './pages/StartUser/StartUser'
+import Book from './pages/Book/Book'
 
 function App() {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <div className="App">
-                <StartUser />
                 {/*<SignIn />*/}
                 {/*<SignUp />*/}
+                <Book />
             </div>
         </LocalizationProvider>
     )

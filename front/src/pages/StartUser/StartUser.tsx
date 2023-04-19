@@ -2,17 +2,17 @@ import React from 'react'
 import style from './StartUser.module.css'
 import CarList from '../../components/CarList/CarList'
 import {
-    interaction,
+    // interaction,
     layer,
-    custom,
+    // custom,
     control, //name spaces
-    Interactions,
+    // Interactions,
     Overlays,
     Controls, //group
     Map,
-    Layers,
-    Overlay,
-    Util //objects
+    Layers
+    // Overlay,
+    // Util //objects
 } from 'react-openlayers'
 const StartUser: React.FC = () => {
     const fullname = 'Anna Kotyagova'
