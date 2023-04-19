@@ -6,6 +6,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import StartUser from './pages/StartUser/StartUser'
 import Book from './pages/Book/Book'
+import Rent from './pages/Rent/Rent'
 
 function App() {
     return (
@@ -13,7 +14,7 @@ function App() {
             <div className="App">
                 {/*<SignIn />*/}
                 {/*<SignUp />*/}
-                <Book />
+                <Rent />
             </div>
         </LocalizationProvider>
     )
