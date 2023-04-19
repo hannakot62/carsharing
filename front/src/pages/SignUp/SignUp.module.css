@@ -1,0 +1,25 @@
+.container{
+    color: var(--primary-blue);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+h1{
+    /*margin-left: 30px;*/
+    text-align: center;
+}
+
+.inputs{
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 350px;
+    margin: 20px;
+    margin-left: 30px;
+}
+.btn{
+    width: 200px;
+    align-self: center;
+    margin: 10px;
+}
