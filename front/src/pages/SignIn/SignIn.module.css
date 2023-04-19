@@ -1,0 +1,35 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary-blue);
+
+
+}
+.toSignUp{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+}
+.toSignUp>*{
+    margin: 30px;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    justify-content: space-around;
+    align-items: center;
+    height: 350px;
+
+}
+main>h1{
+    text-align: center;
+}
+main>*{
+    width: 90%;
+}
