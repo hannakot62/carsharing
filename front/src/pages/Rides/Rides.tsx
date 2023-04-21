@@ -1,19 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import style from './Rides.module.css'
 import { Button } from '@mui/material'
-import { DataGrid, GridRowsProp } from '@mui/x-data-grid'
+
+import {
+    DataGrid,
+    GridCallbackDetails,
+    GridCellParams,
+    GridRowsProp,
+    MuiEvent
+} from '@mui/x-data-grid'
 import { adminRidesColumns } from './adminRidesColumns'
 import dayjs from 'dayjs'
 import { userRidesColumns } from './userRidesColumns'
 
 const Rides: React.FC = () => {
-    const isAdmin = true
+    const isAdmin = false
+    const [selectedRowID, setSelectedRowID] = useState('0')
+    console.log(selectedRowID)
 
     //todo user and their role
     //тавить ride id в id, форматировать дату в строку
-    const columns = isAdmin ? adminRidesColumns : userRidesColumns
+
     const fullname = 'hannakot'
-    const rows: GridRowsProp = [
+    const [rows, setRows] = useState<GridRowsProp>([
         {
             id: '1',
             id_driver: '4',
@@ -35,7 +44,7 @@ const Rides: React.FC = () => {
             price: 1976
         },
         {
-            id: '134',
+            id: '1134',
             id_driver: '42',
             id_car: '877771',
             start_point: 'kolasa 28',
@@ -45,7 +54,7 @@ const Rides: React.FC = () => {
             price: 1976
         },
         {
-            id: '324',
+            id: '4545',
             id_driver: '42',
             id_car: '871',
             start_point: 'kolasa 28',
@@ -54,23 +63,56 @@ const Rides: React.FC = () => {
             end_time: dayjs('2023-01-24').format('DD/MM/YYYY-HH:mm:ss'),
             price: 1976
         }
-    ]
+    ])
+
+    const columns = isAdmin ? adminRidesColumns : userRidesColumns
+
+    function handleCellClick(
+        params: GridCellParams,
+        event: MuiEvent<React.MouseEvent>,
+        details: GridCallbackDetails
+    ): void {
+        setSelectedRowID(params.id.toString())
+    }
 
     return (
         <div className={style.container}>
             <h4 className={style.name}>{isAdmin ? 'all' : fullname} rides</h4>
             <div className={style.gridContainer}>
-                <DataGrid columns={columns} rows={rows} />
+                <DataGrid
+                    columns={columns}
+                    rows={rows}
+                    onCellClick={handleCellClick}
+                />
             </div>
+            <div className={style.buttons}>
+                <Button
+                    size={'large'}
+                    className={style.btn}
+                    variant={'contained'}
+                >
+                    Go Back
+                </Button>
 
-            <Button
-                sx={{ position: 'fixed' }}
-                size={'large'}
-                className={style.btn}
-                variant={'contained'}
-            >
-                Go Back
-            </Button>
+                {isAdmin ? (
+                    <div className={style.controls}>
+                        <Button
+                            disabled={selectedRowID === '0'}
+                            variant={'outlined'}
+                        >
+                            edit
+                        </Button>
+                        <Button
+                            disabled={selectedRowID === '0'}
+                            variant={'outlined'}
+                        >
+                            delete
+                        </Button>
+                    </div>
+                ) : (
+                    <></>
+                )}
+            </div>
         </div>
     )
 }

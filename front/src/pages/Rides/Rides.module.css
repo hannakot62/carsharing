@@ -5,10 +5,10 @@
     align-items: start;
 }
 
-.btn{
-    bottom: 3em;
-    left: 6em;
-}
+/*.btn{*/
+/*    bottom: 3em;*/
+/*    left: 6em;*/
+/*}*/
 
 .name{
     margin: 20px;
@@ -43,4 +43,17 @@
     -webkit-justify-content: flex-start;
     justify-content: flex-start;
     text-align: left;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+.controls{
+    width: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

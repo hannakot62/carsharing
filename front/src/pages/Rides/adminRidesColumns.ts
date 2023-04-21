@@ -1,4 +1,8 @@
-import { GridColDef } from '@mui/x-data-grid'
+import {
+    GridCellParams,
+    GridColDef,
+    GridValueSetterParams
+} from '@mui/x-data-grid'
 import style from './Rides.module.css'
 
 export const adminRidesColumns: GridColDef[] = [
@@ -32,7 +36,13 @@ export const adminRidesColumns: GridColDef[] = [
         headerName: 'From',
         width: 250,
         editable: true,
-        type: 'string'
+        type: 'string',
+        valueParser: (value: string, params?: GridCellParams) => {
+            return value
+        },
+        valueSetter: (params: GridValueSetterParams) => {
+            return params.value
+        }
     },
     {
         field: 'end_point',
