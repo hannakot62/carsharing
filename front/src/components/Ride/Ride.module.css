@@ -1,0 +1,33 @@
+.container{
+    background-color: var(--super-light-blue);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.adminInfo{
+
+}
+.time{
+color:var(--primary-gray)
+}
+h4{
+    color: var(--primary-blue);
+}
+.places{
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+}
+h5{
+    margin: 0;
+}
+.admin{
+display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

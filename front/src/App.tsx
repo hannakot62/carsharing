@@ -7,6 +7,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 import StartUser from './pages/StartUser/StartUser'
 import Book from './pages/Book/Book'
 import Rent from './pages/Rent/Rent'
+import Rides from './pages/Rides/Rides'
 
 function App() {
     return (
@@ -14,8 +15,7 @@ function App() {
             <div className="App">
                 {/*<SignIn />*/}
                 {/*<SignUp />*/}
-                <Rent />
-            </div>
+<Rides/>            </div>
         </LocalizationProvider>
     )
 }
