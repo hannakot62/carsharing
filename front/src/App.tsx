@@ -8,14 +8,14 @@ import StartUser from './pages/StartUser/StartUser'
 import Book from './pages/Book/Book'
 import Rent from './pages/Rent/Rent'
 import Rides from './pages/Rides/Rides'
+import Drivers from './pages/Drivers/Drivers'
 
 function App() {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <div className="App">
-                {/*<SignIn />*/}
-                {/*<SignUp />*/}
-<Rides/>            </div>
+                <Drivers />{' '}
+            </div>
         </LocalizationProvider>
     )
 }

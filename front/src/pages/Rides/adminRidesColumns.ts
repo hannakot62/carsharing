@@ -35,20 +35,14 @@ export const adminRidesColumns: GridColDef[] = [
         field: 'start_point',
         headerName: 'From',
         width: 250,
-        editable: true,
-        type: 'string',
-        valueParser: (value: string, params?: GridCellParams) => {
-            return value
-        },
-        valueSetter: (params: GridValueSetterParams) => {
-            return params.value
-        }
+        editable: false,
+        type: 'string'
     },
     {
         field: 'end_point',
         headerName: 'To',
         width: 250,
-        editable: true,
+        editable: false,
         type: 'string',
         headerClassName: style.gridHeader,
         cellClassName: style.gridColumn

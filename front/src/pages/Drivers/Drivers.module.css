@@ -52,3 +52,6 @@
     flex-direction: row;
     justify-content: space-between;
 }
+a{
+    color: var(--primary-gray);
+}
