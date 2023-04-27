@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CarType } from '../../types/CarType'
 import style from './Car.module.css'
 import { Button, IconButton } from '@mui/material'
@@ -8,12 +8,25 @@ import EditIcon from '@mui/icons-material/Edit'
 interface ICar {
     car: CarType
     isAdmin: boolean
+    onClick: (event: React.MouseEvent<HTMLElement>) => void
+    selectedCar: string
+    isSelected: boolean
 }
 
 const Car: React.FC<ICar> = (props: ICar) => {
     const car = props.car
+    const [selected, setSelected] = useState(props.isSelected)
+    useEffect(() => {
+        setSelected(props.isSelected)
+    }, [props.isSelected])
+
     return (
-        <div className={style.container}>
+        <div
+            className={style.container.concat(' ' + style[selected.toString()])}
+            onClick={event => {
+                props.onClick(event)
+            }}
+        >
             <div className={style.info}>
                 <h2 className={style.main}>
                     {car.model} <span>{car.id_car}</span>

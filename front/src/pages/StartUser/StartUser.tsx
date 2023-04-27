@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import style from './StartUser.module.css'
 import CarList from '../../components/CarList/CarList'
 import {
@@ -14,30 +14,57 @@ import {
     // Overlay,
     // Util //objects
 } from 'react-openlayers'
+import { Button } from '@mui/material'
 const StartUser: React.FC = () => {
     const fullname = 'Anna Kotyagova'
+    const [selectedCarID, setSelectedCarID] = useState('')
     const cars = [
         {
-            id_car: '1',
-            model: 'shkoda',
-            location: 'surhanova 28',
+            id_car: '0708 KI-4',
+            model: 'Shkoda Octavia',
+            location: 'Surhanova 28',
             experience_start: 0,
+            price_per_minute: 0.53
+        },
+        {
+            id_car: '2990 AM-7',
+            model: 'Volkswagen Polo',
+            location: 'Kolasa 8',
+            experience_start: 1,
             price_per_minute: 0.5
         },
         {
-            id_car: '2',
-            model: 'shkod sdsdf a',
-            location: 'surhanova 28',
-            experience_start: 0,
+            id_car: '4697 OO-7',
+            model: 'Volkswagen Polo',
+            location: 'Bogdanovicha 3',
+            experience_start: 1,
             price_per_minute: 0.5
+        },
+        {
+            id_car: '6753 PP-3',
+            model: 'KIA Rio',
+            location: 'Gikalo 9',
+            experience_start: 2,
+            price_per_minute: 0.52
         }
     ]
+    function handleClick(target: any) {
+        const id =
+            target.childNodes[0].childNodes[0].childNodes[1].nextSibling
+                .innerText
+        setSelectedCarID(id)
+    }
+
     return (
         <div className={style.container}>
             <div className={style.left}>
                 <h2>{fullname}</h2>
-                <h3>Rides</h3>
-                <h3>Fines</h3>
+                <h3>
+                    <a href={''}>Rides</a>
+                </h3>
+                <h3>
+                    <a href={''}>Fines</a>
+                </h3>
             </div>
             <main>
                 <h1>Available Cars</h1>
@@ -76,7 +103,20 @@ const StartUser: React.FC = () => {
                 </div>
             </main>
             <div className={style.right}>
-                <CarList isAdmin={false} cars={cars} />
+                <CarList
+                    isAdmin={false}
+                    cars={cars}
+                    onClick={event => handleClick(event.currentTarget)}
+                    selectedCar={selectedCarID}
+                />
+                <Button
+                    size={'large'}
+                    className={style.book}
+                    sx={{ position: 'fixed' }}
+                    variant={'contained'}
+                >
+                    Book
+                </Button>
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CarType } from '../../types/CarType'
 import Car from '../Car/Car'
 import style from './CarList.module.css'
@@ -6,13 +6,41 @@ import style from './CarList.module.css'
 interface ICarList {
     isAdmin: boolean
     cars: Array<CarType>
+    onClick: (event: React.MouseEvent<HTMLElement>) => void
+    selectedCar: string
 }
 
 const CarList: React.FC<ICarList> = (props: ICarList) => {
     const cars = props.cars
-    const carsToRender = cars.map((car: CarType) => (
-        <Car car={car} key={car.id_car} isAdmin={props.isAdmin} />
-    ))
+    console.log(props.selectedCar)
+    const [carsToRender, setCarsToRender] = useState(
+        cars.map((car: CarType) => (
+            <Car
+                car={car}
+                key={car.id_car}
+                isAdmin={props.isAdmin}
+                onClick={props.onClick}
+                selectedCar={props.selectedCar}
+                isSelected={props.selectedCar === car.id_car}
+            />
+        ))
+    )
+
+    useEffect(() => {
+        setCarsToRender(
+            cars.map((car: CarType) => (
+                <Car
+                    car={car}
+                    key={car.id_car}
+                    isAdmin={props.isAdmin}
+                    onClick={props.onClick}
+                    selectedCar={props.selectedCar}
+                    isSelected={props.selectedCar === car.id_car}
+                />
+            ))
+        )
+    }, [props.selectedCar])
+
     return <div className={style.list}>{carsToRender}</div>
 }
 

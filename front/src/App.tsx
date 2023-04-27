@@ -13,9 +13,7 @@ import Drivers from './pages/Drivers/Drivers'
 function App() {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <div className="App">
-                <Drivers />{' '}
-            </div>
+            <div className="App">{/*<Drivers />{' '}*/}</div>
         </LocalizationProvider>
     )
 }

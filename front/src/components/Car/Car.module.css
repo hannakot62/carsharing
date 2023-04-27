@@ -4,7 +4,7 @@
     padding: 10px;
     border: 2px solid var(--primary-blue);
     border-radius: 10px;
-    width: 70%;
+    width: 80%;
     margin: 15px 0;
     display: flex;
     flex-direction: row;
@@ -26,10 +26,16 @@
 }
 .main{
     margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
 }
 h2>span{
-    color: var(--primary-blue)
+    color: var(--primary-blue);
+    margin-left: 10px;
 }
 .price{
     margin: 7px 0;
+}
+.true{
+    background-color: var(--super-light-blue);
 }
