@@ -15,7 +15,14 @@ public class Users {
     private String password;
     private int role = 0;
 
+
     public Users() {
+    }
+
+    public Users(String login, String password, int role) {
+        this.login = login;
+        this.password = password;
+        this.role = role;
     }
 
     @Override

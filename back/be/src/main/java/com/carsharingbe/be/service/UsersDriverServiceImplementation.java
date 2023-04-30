@@ -30,10 +30,12 @@ public class UsersDriverServiceImplementation implements UsersDriverService{
 
     @Override
     public Driver saveDriver(UserDriver driver) {
-        Driver dr = new Driver(driver.getIdusers(),driver.getFull_name(),driver.getExperience());
-        Users user = new Users(driver.getIdusers(),driver.getLogin(),driver.getPassword(),0);
-        driverRepository.save(dr);
+        Users user = new Users(driver.getLogin(),driver.getPassword(),0);
         usersRepository.save(user);
-        return dr;
+        Driver dr = new Driver("last_insert_id()",driver.getFull_name(),driver.getExperience());
+        driverRepository.save(dr);
+        Users registered = usersRepository.findUserByLogin(driver.getLogin());
+        Driver returned = driverRepository.findById(String.valueOf(registered.getIdusers())).get();
+        return returned;
     }
 }

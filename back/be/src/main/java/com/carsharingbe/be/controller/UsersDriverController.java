@@ -41,8 +41,21 @@ public class UsersDriverController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<Driver> signUn(@RequestBody UserDriver user) {
+    public ResponseEntity<Driver> signUn(@RequestBody UserDriver userDriver) {
+        try {
+            Users dbUser = usersDriverService.getUsersByLogin(userDriver.getLogin());
+            if(dbUser.getLogin().length()>0) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            else{
+                Driver driver = usersDriverService.saveDriver(userDriver);
+                return new ResponseEntity<>(driver, HttpStatus.OK);
+            }
+        } catch (NoSuchElementException e) {
+            Driver driver = usersDriverService.saveDriver(userDriver);
+            return new ResponseEntity<>(driver, HttpStatus.OK);
+        } catch (NullPointerException e) {
+            Driver driver = usersDriverService.saveDriver(userDriver);
+            return new ResponseEntity<>(driver, HttpStatus.OK);
+        }
 
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
