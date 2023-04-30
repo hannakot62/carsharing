@@ -1,8 +1,4 @@
-import {
-    GridCellParams,
-    GridColDef,
-    GridValueSetterParams
-} from '@mui/x-data-grid'
+import { GridColDef } from '@mui/x-data-grid'
 import style from './Rides.module.css'
 
 export const adminRidesColumns: GridColDef[] = [

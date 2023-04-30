@@ -16,10 +16,19 @@ import {
 } from 'react-openlayers'
 import { Button } from '@mui/material'
 import { CarType } from '../../types/CarType'
+import { useDispatch, useSelector } from 'react-redux'
+import GitHubIcon from '@mui/icons-material/GitHub'
+import TelegramIcon from '@mui/icons-material/Telegram'
+import InstagramIcon from '@mui/icons-material/Instagram'
+import { Link, useNavigate } from 'react-router-dom'
+import { removeUser } from '../../store/slices/userSlice'
+
 const StartUser: React.FC = () => {
-    const fullname = 'Anna Kotyagova'
     const [selectedCarID, setSelectedCarID] = useState('')
     const [cars, setCars] = useState(new Array<CarType>())
+    const fullname = useSelector((state: any) => state.user.full_name)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     async function loadCars() {
         const response = await fetch('http://localhost:8080/cars/getAll')
@@ -38,18 +47,55 @@ const StartUser: React.FC = () => {
         setSelectedCarID(id)
     }
 
+    function handleLogOut() {
+        dispatch(removeUser())
+        navigate('/signin')
+    }
+
     return (
         <div className={style.container}>
             <div className={style.left}>
-                <h2>{fullname}</h2>
-                <h3>
-                    <a href={''}>Rides</a>
-                </h3>
-                <h3>
-                    <a href={''}>Fines</a>
-                </h3>
+                <h2 className={style.name}>{fullname}</h2>
+                <div className={style.info}>
+                    <h3>
+                        <Link to="/rides">Rides</Link>
+                    </h3>
+                    <h3>
+                        <Link to="/fines">Fines</Link>
+                    </h3>
+                    <Button
+                        size="small"
+                        variant="contained"
+                        onClick={() => handleLogOut()}
+                    >
+                        log out
+                    </Button>
+                </div>
+                <footer>
+                    <h3 className={style.title}>Contact Us:</h3>
+                    <div className={style.links}>
+                        <a href="https://github.com/hannakot62" target="blank">
+                            <GitHubIcon
+                                style={{ width: '40px', height: '40px' }}
+                            />
+                        </a>
+                        <a href="https://t.me/hannakot62" target="blank">
+                            <TelegramIcon
+                                style={{ width: '40px', height: '40px' }}
+                            />
+                        </a>
+                        <a
+                            href="https://www.instagram.com/hannakot62/"
+                            target="blank"
+                        >
+                            <InstagramIcon
+                                style={{ width: '40px', height: '40px' }}
+                            />
+                        </a>
+                    </div>
+                </footer>
             </div>
-            <main>
+            <main className={style.main}>
                 <h1>Available Cars</h1>
                 <hr />
                 <div className={style.mapContainer}>

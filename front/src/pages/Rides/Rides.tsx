@@ -12,16 +12,16 @@ import {
 import { adminRidesColumns } from './adminRidesColumns'
 import dayjs from 'dayjs'
 import { userRidesColumns } from './userRidesColumns'
+import { useSelector } from 'react-redux'
 
 const Rides: React.FC = () => {
-    const isAdmin = false
     const [selectedRowID, setSelectedRowID] = useState('0')
-    console.log(selectedRowID)
 
+    const isAdmin = !!useSelector((state: any) => state.user.role)
+    const fullname = useSelector((state: any) => state.user.full_name)
     //todo user and their role
     //тавить ride id в id, форматировать дату в строку
 
-    const fullname = 'hannakot'
     const [rows, setRows] = useState<GridRowsProp>([
         {
             id: '1',
