@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/cars")
 public class CarController {
 
@@ -30,13 +31,12 @@ public class CarController {
     @GetMapping("/{id}")
     public ResponseEntity<Car> getCarById (@PathVariable String id){
         Car car = carService.getCarById(id);
-        return new ResponseEntity<Car>(car, HttpStatus.OK);
+        return new ResponseEntity<>(car, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id")
+    @DeleteMapping("/{id}")
     public void deleteCarById(@PathVariable String id){
         carService.deleteCarById(id);
-        return ;
     }
 
     @PutMapping("/{id}")

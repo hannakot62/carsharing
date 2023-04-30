@@ -3,6 +3,7 @@ package com.carsharingbe.be.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table (name="car")
 public class Car {
     @Id
     @Column(name = "idcar", nullable = false)
