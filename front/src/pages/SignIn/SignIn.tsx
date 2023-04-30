@@ -2,14 +2,16 @@ import React, { useState } from 'react'
 import style from './SignIn.module.css'
 import { Button, TextField } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setUser } from '../../store/slices/userSlice'
 
 const SignIn: React.FC = () => {
-    //TODO errors
     const navigate = useNavigate()
     const [firstError, setFirstError] = useState('')
     const [secondError, setSecondError] = useState('')
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
+    const dispatch = useDispatch()
 
     async function handleSignIn() {
         if (!login) {
@@ -34,7 +36,19 @@ const SignIn: React.FC = () => {
         })
         switch (response.status) {
             case 200: {
-                navigate('/startUser')
+                const user = await response.json()
+                dispatch(
+                    setUser({
+                        idusers: user.iddriver,
+                        login: login,
+                        role: +!user.full_name,
+                        full_name: user.full_name,
+                        experience: user.experience
+                    })
+                )
+                user.full_name
+                    ? navigate('/startUser')
+                    : navigate('/startAdmin')
                 return
             }
             case 404: {

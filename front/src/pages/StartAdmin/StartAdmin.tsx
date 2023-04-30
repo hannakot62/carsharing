@@ -1,11 +1,7 @@
-import React from "react";
+import React from 'react'
 
-const StartAdmin : React.FC = () => {
-  return (
-    <div>
+const StartAdmin: React.FC = () => {
+    return <div>hello boss</div>
+}
 
-    </div>
-  );
-};
-
-export default StartAdmin;
+export default StartAdmin
