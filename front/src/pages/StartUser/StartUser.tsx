@@ -23,9 +23,7 @@ const StartUser: React.FC = () => {
 
     async function loadCars() {
         const response = await fetch('http://localhost:8080/cars/getAll')
-        console.log(response)
         const json = await response.json()
-        console.log(json)
         setCars(json)
     }
 
@@ -33,36 +31,6 @@ const StartUser: React.FC = () => {
         loadCars()
     }, [])
 
-    // const cars = [
-    //     {
-    //         id_car: '0708 KI-4',
-    //         model: 'Shkoda Octavia',
-    //         location: 'Surhanova 28',
-    //         experience_start: 0,
-    //         price_per_minute: 0.53
-    //     },
-    //     {
-    //         id_car: '2990 AM-7',
-    //         model: 'Volkswagen Polo',
-    //         location: 'Kolasa 8',
-    //         experience_start: 1,
-    //         price_per_minute: 0.5
-    //     },
-    //     {
-    //         id_car: '4697 OO-7',
-    //         model: 'Volkswagen Polo',
-    //         location: 'Bogdanovicha 3',
-    //         experience_start: 1,
-    //         price_per_minute: 0.5
-    //     },
-    //     {
-    //         id_car: '6753 PP-3',
-    //         model: 'KIA Rio',
-    //         location: 'Gikalo 9',
-    //         experience_start: 2,
-    //         price_per_minute: 0.52
-    //     }
-    // ]
     function handleClick(target: any) {
         const id =
             target.childNodes[0].childNodes[0].childNodes[1].nextSibling

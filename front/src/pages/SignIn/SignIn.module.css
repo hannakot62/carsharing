@@ -1,35 +1,39 @@
-.container{
+.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: var(--primary-blue);
-
-
 }
-.toSignUp{
+.toSignUp {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
     width: 90%;
 }
-.toSignUp>*{
+.toSignUp > * {
     margin: 30px;
 }
 
-main{
+main {
     display: flex;
     flex-direction: column;
     width: 400px;
     justify-content: space-around;
     align-items: center;
     height: 350px;
-
 }
-main>h1{
+main > h1 {
     text-align: center;
 }
-main>*{
+main > * {
     width: 90%;
+}
+a {
+    text-decoration: none;
+    color: var(--primary-blue);
+}
+a:visited {
+    color: var(--primary-blue);
 }
