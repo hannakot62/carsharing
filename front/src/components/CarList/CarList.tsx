@@ -17,11 +17,11 @@ const CarList: React.FC<ICarList> = (props: ICarList) => {
         cars.map((car: CarType) => (
             <Car
                 car={car}
-                key={car.id_car}
+                key={car.idcar}
                 isAdmin={props.isAdmin}
                 onClick={props.onClick}
                 selectedCar={props.selectedCar}
-                isSelected={props.selectedCar === car.id_car}
+                isSelected={props.selectedCar === car.idcar}
             />
         ))
     )
@@ -31,15 +31,15 @@ const CarList: React.FC<ICarList> = (props: ICarList) => {
             cars.map((car: CarType) => (
                 <Car
                     car={car}
-                    key={car.id_car}
+                    key={car.idcar}
                     isAdmin={props.isAdmin}
                     onClick={props.onClick}
                     selectedCar={props.selectedCar}
-                    isSelected={props.selectedCar === car.id_car}
+                    isSelected={props.selectedCar === car.idcar}
                 />
             ))
         )
-    }, [props.selectedCar])
+    }, [props.selectedCar, cars])
 
     return <div className={style.list}>{carsToRender}</div>
 }

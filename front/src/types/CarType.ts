@@ -1,7 +1,8 @@
 export type CarType = {
-    id_car: string
+    idcar: string
     model: string
     location: string
     experience_start: number
     price_per_minute: number
+    available: boolean
 }

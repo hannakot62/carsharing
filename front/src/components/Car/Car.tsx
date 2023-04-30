@@ -29,7 +29,7 @@ const Car: React.FC<ICar> = (props: ICar) => {
         >
             <div className={style.info}>
                 <h2 className={style.main}>
-                    {car.model} <span>{car.id_car}</span>
+                    {car.model} <span>{car.idcar}</span>
                 </h2>
                 <h4>Where: {car.location}</h4>
                 <h5>

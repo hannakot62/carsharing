@@ -37,7 +37,7 @@ const Drivers: React.FC = () => {
 
     return (
         <div className={style.container}>
-            <h4 className={style.name}>manage drivers</h4>
+            <h4 className={style.name}>MANAGE DRIVERS</h4>
             <div className={style.gridContainer}>
                 <DataGrid
                     columns={driversColumns}
