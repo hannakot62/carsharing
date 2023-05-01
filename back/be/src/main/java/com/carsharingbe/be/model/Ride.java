@@ -1,10 +1,6 @@
 package com.carsharingbe.be.model;
-
-
 import jakarta.persistence.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
 
 @Entity
 @Table(name="ride")
