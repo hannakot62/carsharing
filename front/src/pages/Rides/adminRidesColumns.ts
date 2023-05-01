@@ -12,14 +12,14 @@ export const adminRidesColumns: GridColDef[] = [
         cellClassName: style.gridColumn
     },
     {
-        field: 'id_driver',
+        field: 'iddriver',
         headerName: 'Driver ID',
         width: 80,
         editable: false,
         type: 'string'
     },
     {
-        field: 'id_car',
+        field: 'idcar',
         headerName: 'Car Number',
         width: 100,
         editable: false,

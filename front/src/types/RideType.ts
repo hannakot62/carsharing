@@ -1,7 +1,7 @@
 export type RideType = {
-    id_ride: string
-    id_driver: string
-    id_car: string
+    idride: string
+    iddriver: string
+    idcar: string
     start_point: string
     end_point: string
     start_time: Date

@@ -16,7 +16,7 @@ const Ride: React.FC<IRide> = (props: IRide) => {
     return (
         <div className={style.container}>
             <div className={style.info}>
-                <h4>Car: {ride.id_car}</h4>
+                <h4>Car: {ride.idcar}</h4>
                 <div className={style.places}>
                     <h5>From: {ride.start_point}</h5>
                     <h5>To: {ride.end_point}</h5>
@@ -39,8 +39,8 @@ const Ride: React.FC<IRide> = (props: IRide) => {
                         </IconButton>
                     </div>
                     <div className={style.adminInfo}>
-                        <h5>ID ride: {ride.id_ride}</h5>
-                        <h5>ID driver: {ride.id_driver}</h5>
+                        <h5>ID ride: {ride.idride}</h5>
+                        <h5>ID driver: {ride.iddriver}</h5>
                     </div>
                 </div>
             ) : (

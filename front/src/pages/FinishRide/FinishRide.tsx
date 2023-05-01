@@ -55,7 +55,6 @@ const FinishRide: React.FC = () => {
         }
         dispatch(removeSelectedCar())
         dispatch(removeStartTime())
-        //requests + navigate
         await fetch('http://localhost:8080/rides/add', {
             method: 'POST',
             headers: {

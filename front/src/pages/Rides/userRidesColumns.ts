@@ -3,7 +3,7 @@ import { GridColDef } from '@mui/x-data-grid'
 
 export const userRidesColumns: GridColDef[] = [
     {
-        field: 'id_car',
+        field: 'idcar',
         headerName: 'Car Number',
         width: 100,
         editable: false,
