@@ -22,13 +22,19 @@ import TelegramIcon from '@mui/icons-material/Telegram'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import { Link, useNavigate } from 'react-router-dom'
 import { removeUser } from '../../store/slices/userSlice'
-import { setSelectedCar } from '../../store/slices/selectedCarSlice'
+import {
+    removeSelectedCar,
+    setSelectedCar
+} from '../../store/slices/selectedCarSlice'
 
 const StartUser: React.FC = () => {
     const [selectedCarID, setSelectedCarID] = useState('')
     const [cars, setCars] = useState(new Array<CarType>())
     const fullname = useSelector((state: any) => state.user.full_name)
     const user_experience = useSelector((state: any) => state.user.experience)
+
+    const storeCar = useSelector((state: any) => state.selectedCar.idcar)
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -39,6 +45,10 @@ const StartUser: React.FC = () => {
     }
 
     useEffect(() => {
+        if (storeCar) {
+            dispatch(removeSelectedCar())
+        }
+
         loadCars()
     }, [])
 
@@ -54,7 +64,7 @@ const StartUser: React.FC = () => {
         navigate('/signin')
     }
 
-    function handleBook() {
+    async function handleBook() {
         if (!selectedCarID) {
             alert("You haven't selected a car")
             return
@@ -62,12 +72,23 @@ const StartUser: React.FC = () => {
         const selected = cars.find(car => car.idcar === selectedCarID)
         //eslint-disable-next-line
         //@ts-ignore
+        selected.available = false
+        //eslint-disable-next-line
+        //@ts-ignore
         if (selected?.experience_start > user_experience) {
             alert("Sorry, you aren't experienced enough")
             return
         }
+
         dispatch(setSelectedCar(selected))
-        navigate('/rent')
+        await fetch('http://localhost:8080/cars/' + selectedCarID, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(selected)
+        })
+        navigate('/book')
     }
 
     return (

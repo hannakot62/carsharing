@@ -12,7 +12,6 @@ interface ICarList {
 
 const CarList: React.FC<ICarList> = (props: ICarList) => {
     const cars = props.cars
-    console.log(props.selectedCar)
     const [carsToRender, setCarsToRender] = useState(
         cars.map((car: CarType) => (
             <Car

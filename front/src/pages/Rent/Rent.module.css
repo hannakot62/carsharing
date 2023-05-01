@@ -1,15 +1,24 @@
-.container{
+.container {
     margin: 0 auto;
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 40px;
     height: 500px;
+    padding: 30px;
 }
-.info{
-    background-color: var(--light-blue);
+
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+}
+.info {
+    background-color: var(--primary-blue);
     letter-spacing: 0.1em;
     color: white;
     width: 400px;
@@ -18,14 +27,31 @@
     justify-content: space-between;
     align-items: start;
     border-radius: 20px;
-    padding: 20px ;
+    padding: 20px;
+
+    -webkit-box-shadow: 0px 0px 15px 4px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 0px 15px 4px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 0px 15px 4px rgba(34, 60, 80, 0.2);
 }
-.btns{
+.btns {
     display: flex;
     flex-direction: row;
 
-    width: 400px;
+    width: 530px;
     justify-content: end;
     align-items: center;
     margin-top: 50px;
+}
+
+.car > span {
+    color: var(--dark-gray);
+}
+
+.info > h1 {
+    height: 50px;
+}
+
+.btns > button > a,
+.btns > button > a:visited {
+    color: white;
 }
