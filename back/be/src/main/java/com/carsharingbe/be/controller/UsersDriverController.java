@@ -25,11 +25,20 @@ public class UsersDriverController {
 
     @PostMapping("/signin")
     public ResponseEntity<Driver> signIn(@RequestBody Users user) {
-
+        System.out.println(user);
         try {
             Users dbUser = usersDriverService.getUsersByLogin(user.getLogin());
+            System.out.println(dbUser);
             if (Objects.equals(dbUser.getPassword(), user.getPassword())) {
-                Driver driver = usersDriverService.getDriverById(dbUser.getIdusers());
+                Driver driver;
+                try {
+                    driver = usersDriverService.getDriverById(dbUser.getIdusers());
+                } catch (NoSuchElementException e) {
+                    driver = new Driver(String.valueOf(dbUser.getIdusers()), "", -1);
+                } catch (NullPointerException e) {
+                    driver = new Driver(String.valueOf(dbUser.getIdusers()), "", -1);
+                }
+                System.out.println(driver);
                 return new ResponseEntity<>(driver, HttpStatus.OK);
             } else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } catch (NoSuchElementException e) {
@@ -41,11 +50,11 @@ public class UsersDriverController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<Driver> signUn(@RequestBody UserDriver userDriver) {
+    public ResponseEntity<Driver> signUp(@RequestBody UserDriver userDriver) {
         try {
             Users dbUser = usersDriverService.getUsersByLogin(userDriver.getLogin());
-            if(dbUser.getLogin().length()>0) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-            else{
+            if (dbUser.getLogin().length() > 0) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            else {
                 Driver driver = usersDriverService.saveDriver(userDriver);
                 return new ResponseEntity<>(driver, HttpStatus.OK);
             }
@@ -58,4 +67,5 @@ public class UsersDriverController {
         }
 
     }
+
 }
