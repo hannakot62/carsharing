@@ -14,8 +14,10 @@ import dayjs from 'dayjs'
 import { userRidesColumns } from './userRidesColumns'
 import { useSelector } from 'react-redux'
 import { RideType } from '../../types/RideType'
+import { useNavigate } from 'react-router-dom'
 
 const Rides: React.FC = () => {
+    const navigate = useNavigate()
     const [selectedRowID, setSelectedRowID] = useState('0')
     const userID = useSelector((state: any) => state.user.idusers)
 
@@ -26,8 +28,8 @@ const Rides: React.FC = () => {
     async function loadRides() {
         const response = await fetch('http://localhost:8080/rides/' + userID)
         const json = await response.json()
-        await setRides(json)
-        const r = rides.map(ride => {
+        setRides(json)
+        const r = json.map((ride: RideType) => {
             return {
                 id: ride.idride,
                 iddriver: ride.iddriver,
@@ -47,6 +49,10 @@ const Rides: React.FC = () => {
     }, [])
 
     const columns = isAdmin ? adminRidesColumns : userRidesColumns
+
+    function handleGoBack() {
+        isAdmin ? navigate('/startAdmin') : navigate('/startUser')
+    }
 
     function handleCellClick(
         params: GridCellParams,
@@ -71,6 +77,7 @@ const Rides: React.FC = () => {
                     size={'large'}
                     className={style.btn}
                     variant={'contained'}
+                    onClick={() => handleGoBack()}
                 >
                     Go Back
                 </Button>

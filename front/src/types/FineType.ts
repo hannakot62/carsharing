@@ -1,6 +1,6 @@
 export type FineType = {
-    id_fine: string
-    id_ride: string
+    idfine: string
+    idride: string
     fine_sum: number
     contents: string
     is_paid: boolean
