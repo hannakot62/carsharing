@@ -22,18 +22,20 @@ import TelegramIcon from '@mui/icons-material/Telegram'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import { Link, useNavigate } from 'react-router-dom'
 import { removeUser } from '../../store/slices/userSlice'
+import { setSelectedCar } from '../../store/slices/selectedCarSlice'
 
 const StartUser: React.FC = () => {
     const [selectedCarID, setSelectedCarID] = useState('')
     const [cars, setCars] = useState(new Array<CarType>())
     const fullname = useSelector((state: any) => state.user.full_name)
+    const user_experience = useSelector((state: any) => state.user.experience)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     async function loadCars() {
         const response = await fetch('http://localhost:8080/cars/getAll')
         const json = await response.json()
-        setCars(json)
+        setCars(json.filter((item: any) => item.available === true))
     }
 
     useEffect(() => {
@@ -50,6 +52,22 @@ const StartUser: React.FC = () => {
     function handleLogOut() {
         dispatch(removeUser())
         navigate('/signin')
+    }
+
+    function handleBook() {
+        if (!selectedCarID) {
+            alert("You haven't selected a car")
+            return
+        }
+        const selected = cars.find(car => car.idcar === selectedCarID)
+        //eslint-disable-next-line
+        //@ts-ignore
+        if (selected?.experience_start > user_experience) {
+            alert("Sorry, you aren't experienced enough")
+            return
+        }
+        dispatch(setSelectedCar(selected))
+        navigate('/rent')
     }
 
     return (
@@ -143,6 +161,7 @@ const StartUser: React.FC = () => {
                     className={style.book}
                     sx={{ position: 'fixed' }}
                     variant={'contained'}
+                    onClick={() => handleBook()}
                 >
                     Book
                 </Button>
