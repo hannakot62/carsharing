@@ -1,11 +1,7 @@
-import React from "react";
+import React from 'react'
 
-const Cars : React.FC = () => {
-  return (
-    <div>
+const Cars: React.FC = () => {
+    return <div>fahsfagh</div>
+}
 
-    </div>
-  );
-};
-
-export default Cars;
+export default Cars

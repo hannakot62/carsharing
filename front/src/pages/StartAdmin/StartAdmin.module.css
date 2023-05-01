@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: var(--super-light-blue);
+}
+.container > h1 {
+    margin-top: 30px;
+    font-size: 3em;
+    color: var(--primary-blue);
+}
+.container > h5 {
+    width: 80%;
+    align-self: center;
+    font-size: 1em;
+    color: var(--dark-gray);
+}
+.btns {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 270px;
+    margin-top: 20px;
+}
+.btns > * {
+    width: 80%;
+    background-color: var(--primary-gray);
+}
+.btns > * > *,
+.btns > * > *:visited {
+    color: white;
+}
+
+.out {
+    width: 40%;
+    margin-top: 60px;
+    align-self: center;
+}

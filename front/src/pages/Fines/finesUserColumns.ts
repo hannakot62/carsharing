@@ -5,7 +5,7 @@ export const finesUserColumns: GridColDef[] = [
     {
         field: 'id',
         headerName: 'Fine ID',
-        width: 80,
+        width: 100,
         editable: false,
         type: 'string',
         headerClassName: style.gridHeader,
@@ -15,14 +15,14 @@ export const finesUserColumns: GridColDef[] = [
     {
         field: 'fine_sum',
         headerName: 'Fine Sum',
-        width: 80,
+        width: 150,
         editable: false,
         type: 'string'
     },
     {
         field: 'contents',
         headerName: 'Fine Contents',
-        width: 80,
+        width: 900,
         editable: false,
         type: 'string',
         headerClassName: style.gridHeader,
@@ -30,8 +30,8 @@ export const finesUserColumns: GridColDef[] = [
     },
     {
         field: 'is_paid',
-        headerName: 'Fine ID',
-        width: 80,
+        headerName: 'Paid',
+        width: 100,
         editable: false,
         type: 'string'
     }
