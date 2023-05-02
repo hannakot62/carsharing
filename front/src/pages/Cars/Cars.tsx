@@ -13,6 +13,7 @@ import { CarType } from '../../types/CarType'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setSelectedCar } from '../../store/slices/selectedCarSlice'
+import { removeAciveCar, setActiveCar } from '../../store/slices/activeCarSlice'
 
 const Cars: React.FC = () => {
     const navigate = useNavigate()
@@ -41,6 +42,7 @@ const Cars: React.FC = () => {
 
     useEffect(() => {
         loadCars()
+        dispatch(removeAciveCar())
     }, [])
 
     function handleCellClick(
@@ -49,6 +51,7 @@ const Cars: React.FC = () => {
         details: GridCallbackDetails
     ): void {
         setSelectedRowID(params.id.toString())
+        dispatch(setActiveCar({ idcar: params.id.toString() }))
     }
 
     function handleEdit() {
@@ -85,7 +88,10 @@ const Cars: React.FC = () => {
                 <div className={style.controls}>
                     <Button
                         variant={'outlined'}
-                        onClick={() => navigate('/addCar')}
+                        onClick={() => {
+                            dispatch(removeAciveCar())
+                            navigate('/addCar')
+                        }}
                     >
                         add
                     </Button>
