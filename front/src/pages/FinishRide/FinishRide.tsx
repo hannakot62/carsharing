@@ -103,6 +103,10 @@ const FinishRide: React.FC = () => {
                 {' '}
                 <TextField
                     required
+                    sx={{
+                        backgroundColor: 'white',
+                        borderRadius: '5px'
+                    }}
                     label={'Enter your current location'}
                     variant={'outlined'}
                     error={!!firstError}

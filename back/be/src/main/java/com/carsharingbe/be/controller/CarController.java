@@ -41,10 +41,8 @@ public class CarController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Car> updateCarById(@RequestBody Car car, @PathVariable String id){
-//        String idCorrect = id.replace("%20"," ");
         Car current = carService.getCarById(id);
         System.out.println(id);
-//        System.out.println(idCorrect);
         carService.saveCar(car);
         return  new ResponseEntity<>(HttpStatus.OK);
     }

@@ -33,7 +33,7 @@ const Rent: React.FC = () => {
                     <h4>Location: {location}</h4>
                     <h4>Start Time: {start_time}</h4>
                 </div>
-                <TimeClock value={currentTime} />
+                <TimeClock className={style.clock} value={currentTime} />
             </main>
             <div className={style.btns}>
                 <Button size={'large'} variant={'contained'}>

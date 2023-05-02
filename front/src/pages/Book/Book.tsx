@@ -55,6 +55,7 @@ const Book: React.FC = () => {
             </div>
             <div className={style.btns}>
                 <Button
+                    sx={{ backgroundColor: 'white', borderColor: 'white' }}
                     size={'large'}
                     variant={'outlined'}
                     onClick={() => handleGoBack()}
