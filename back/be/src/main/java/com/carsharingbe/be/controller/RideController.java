@@ -19,7 +19,7 @@ public class RideController {
     public List<Ride> getAll(){
         return rideService.getAllRides();
     }
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public List<Ride> getRidesByDriverId(@PathVariable int id){
         return  rideService.getRidesByDriverId(id);
     }
