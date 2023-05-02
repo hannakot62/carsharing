@@ -22,8 +22,9 @@
     align-items: center;
     height: 270px;
     margin-top: 20px;
+    margin-bottom: 60px;
 }
-.btns > * {
+.btns > button {
     width: 80%;
     background-color: var(--primary-gray);
 }
@@ -34,6 +35,5 @@
 
 .out {
     width: 40%;
-    margin-top: 60px;
     align-self: center;
 }

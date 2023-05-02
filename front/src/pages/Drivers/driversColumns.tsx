@@ -5,6 +5,7 @@ import {
 } from '@mui/x-data-grid'
 import style from './Drivers.module.css'
 import React, { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 
 export const driversColumns: GridColDef[] = [
     {
@@ -12,21 +13,12 @@ export const driversColumns: GridColDef[] = [
         headerName: 'Driver ID',
         width: 100,
         editable: false,
-        type: 'string',
-        headerClassName: style.gridHeader,
-        cellClassName: style.gridColumn
-    },
-    {
-        field: 'login',
-        headerName: 'Driver Login',
-        width: 350,
-        editable: false,
         type: 'string'
     },
     {
         field: 'fullname',
         headerName: 'Full Name',
-        width: 350,
+        width: 750,
         editable: false,
         type: 'string',
         headerClassName: style.gridHeader,
@@ -35,17 +27,17 @@ export const driversColumns: GridColDef[] = [
     {
         field: 'rides_link',
         headerName: 'Rides',
-        width: 100,
+        width: 120,
         editable: false,
-        renderCell: (): ReactNode => <a href="">rides</a>
+        renderCell: (): ReactNode => <Link to="/rides">rides</Link>
     },
     {
         field: 'fines_link',
         headerName: 'Fines',
-        width: 100,
+        width: 120,
         editable: false,
         type: 'any',
-        renderCell: (): ReactNode => <a href="">fines</a>,
+        renderCell: (): ReactNode => <Link to="/fines">fines</Link>,
         headerClassName: style.gridHeader,
         cellClassName: style.gridColumn
     },

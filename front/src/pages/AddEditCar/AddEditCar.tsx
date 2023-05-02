@@ -1,11 +1,7 @@
-import React from "react";
+import React from 'react'
 
-const AddEditCar : React.FC = () => {
-  return (
-    <div>
+const AddEditCar: React.FC = () => {
+    return <div>re</div>
+}
 
-    </div>
-  );
-};
-
-export default AddEditCar;
+export default AddEditCar

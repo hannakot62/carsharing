@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     DataGrid,
     GridCallbackDetails,
@@ -9,23 +9,40 @@ import {
 import style from './Drivers.module.css'
 import { Button } from '@mui/material'
 import { driversColumns } from './driversColumns'
+import { DriverType } from '../../types/DriverType'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import {
+    removeAciveDriver,
+    setActiveDriver
+} from '../../store/slices/activeDriverSlice'
 
 const Drivers: React.FC = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
     const [selectedRowID, setSelectedRowID] = useState('0')
-    console.log(selectedRowID)
 
-    //todo тавить driver id в id, форматировать дату в строку
+    const [drivers, setDrivers] = useState(new Array<DriverType>())
+    const [rows, setRows] = useState<GridRowsProp>([])
+    async function loadDrivers() {
+        const response = await fetch('http://localhost:8080/driver/getAll')
+        const json = await response.json()
+        setDrivers(json)
+        const d = json.map((driver: DriverType) => {
+            return {
+                id: driver.iddriver,
+                iddriver: driver.iddriver,
+                fullname: driver.full_name,
+                experience: driver.experience
+            }
+        })
+        setRows(d)
+    }
 
-    const [rows, setRows] = useState<GridRowsProp>([
-        {
-            id: '1',
-            fullname: 'karina arina',
-            login: 'jjj',
-            // rides: <a>rides</a>,
-            fines: <a>fines</a>,
-            experience: 2
-        }
-    ])
+    useEffect(() => {
+        loadDrivers()
+    }, [])
 
     function handleCellClick(
         params: GridCellParams,
@@ -33,6 +50,19 @@ const Drivers: React.FC = () => {
         details: GridCallbackDetails
     ): void {
         setSelectedRowID(params.id.toString())
+        dispatch(setActiveDriver({ iddriver: params.id }))
+    }
+
+    function handleGoBack() {
+        dispatch(removeAciveDriver())
+        navigate('/startAdmin')
+    }
+
+    async function handleDelete() {
+        await fetch('http://localhost:8080/driver/' + selectedRowID, {
+            method: 'DELETE'
+        })
+        loadDrivers()
     }
 
     return (
@@ -50,6 +80,7 @@ const Drivers: React.FC = () => {
                     size={'large'}
                     className={style.btn}
                     variant={'contained'}
+                    onClick={() => handleGoBack()}
                 >
                     Go Back
                 </Button>
@@ -58,12 +89,7 @@ const Drivers: React.FC = () => {
                     <Button
                         disabled={selectedRowID === '0'}
                         variant={'outlined'}
-                    >
-                        edit
-                    </Button>
-                    <Button
-                        disabled={selectedRowID === '0'}
-                        variant={'outlined'}
+                        onClick={() => handleDelete()}
                     >
                         delete
                     </Button>

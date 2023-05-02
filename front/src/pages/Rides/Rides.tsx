@@ -20,13 +20,15 @@ const Rides: React.FC = () => {
     const navigate = useNavigate()
     const [selectedRowID, setSelectedRowID] = useState('0')
     const userID = useSelector((state: any) => state.user.idusers)
-
+    const activeDriverID = useSelector(
+        (state: any) => state.activeDriver.iddriver
+    )
     const isAdmin = !!useSelector((state: any) => state.user.role)
     const fullname = useSelector((state: any) => state.user.full_name)
     const [rides, setRides] = useState(new Array<RideType>())
     const [rows, setRows] = useState<GridRowsProp>([])
-    async function loadRides() {
-        const response = await fetch('http://localhost:8080/rides/' + userID)
+    async function loadRidesUser(id: number) {
+        const response = await fetch('http://localhost:8080/rides/' + id)
         const json = await response.json()
         setRides(json)
         const r = json.map((ride: RideType) => {
@@ -44,8 +46,31 @@ const Rides: React.FC = () => {
         setRows(r)
     }
 
+    async function loadRidesAdmin() {
+        if (activeDriverID) {
+            loadRidesUser(activeDriverID)
+            return
+        } else {
+            const response = await fetch('http://localhost:8080/rides/getAll')
+            const json = await response.json()
+            setRides(json)
+            const r = json.map((ride: RideType) => {
+                return {
+                    id: ride.idride,
+                    iddriver: ride.iddriver,
+                    idcar: ride.idcar,
+                    start_point: ride.start_point,
+                    end_point: ride.end_point,
+                    start_time: ride.start_time,
+                    end_time: ride.end_time,
+                    price: ride.price
+                }
+            })
+            setRows(r)
+        }
+    }
     useEffect(() => {
-        loadRides()
+        isAdmin ? loadRidesAdmin() : loadRidesUser(userID)
     }, [])
 
     const columns = isAdmin ? adminRidesColumns : userRidesColumns
@@ -62,9 +87,18 @@ const Rides: React.FC = () => {
         setSelectedRowID(params.id.toString())
     }
 
+    async function handleDelete() {
+        await fetch('http://localhost:8080/rides/' + selectedRowID, {
+            method: 'DELETE'
+        })
+        isAdmin ? loadRidesAdmin() : loadRidesUser(userID)
+    }
+
     return (
         <div className={style.container}>
-            <h4 className={style.name}>{isAdmin ? 'all' : fullname} rides</h4>
+            <h4 className={style.name}>
+                {isAdmin ? 'MANAGE' : fullname.toUpperCase()} RIDES
+            </h4>
             <div className={style.gridContainer}>
                 <DataGrid
                     columns={columns}
@@ -87,12 +121,7 @@ const Rides: React.FC = () => {
                         <Button
                             disabled={selectedRowID === '0'}
                             variant={'outlined'}
-                        >
-                            edit
-                        </Button>
-                        <Button
-                            disabled={selectedRowID === '0'}
-                            variant={'outlined'}
+                            onClick={() => handleDelete()}
                         >
                             delete
                         </Button>
