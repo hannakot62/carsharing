@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import style from './StartAdmin.module.css'
 import { Button } from '@mui/material'
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { removeUser } from '../../store/slices/userSlice'
+import { removeAciveDriver } from '../../store/slices/activeDriverSlice'
 
 const StartAdmin: React.FC = () => {
     const dispatch = useDispatch()
@@ -14,6 +15,9 @@ const StartAdmin: React.FC = () => {
         dispatch(removeUser())
         navigate('/signin')
     }
+    useEffect(() => {
+        dispatch(removeAciveDriver())
+    }, [])
 
     return (
         <div className={style.container}>
